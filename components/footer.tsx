@@ -25,7 +25,7 @@ export function Footer({ className }: AdditionalProps): JSX.Element {
             <span
               className={cn(
                 rubikFont.className,
-                "uppercase font-bold text-xl "
+                "uppercase font-bold text-xl ",
               )}
             >
               {siteConfig.name}
@@ -42,7 +42,7 @@ export function Footer({ className }: AdditionalProps): JSX.Element {
                   href={navItem.href}
                   className={cn(
                     "capitalize font-medium text-xs underline text-secondary-foreground/50",
-                    poppinsFont.className
+                    poppinsFont.className,
                   )}
                 >
                   {navItem.title}

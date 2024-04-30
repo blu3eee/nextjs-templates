@@ -1,4 +1,4 @@
-import { MainNavItem, SiteConfig } from "@/types";
+import type { MainNavItem, SiteConfig } from "@/types";
 
 export const mainNavItems: MainNavItem[] = [
   {
