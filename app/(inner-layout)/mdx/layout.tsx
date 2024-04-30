@@ -12,6 +12,18 @@ const items: ItemProps[] = [
     href: "/mdx",
     name: "Import MDX Content",
   },
+  {
+    href: "/mdx/mdx-page",
+    name: "File based routing",
+  },
+  {
+    href: "/mdx/using-imports",
+    name: "Using Imports",
+  },
+  {
+    href: "/mdx/local-styles",
+    name: "Local styles",
+  },
 ];
 
 /**
@@ -28,13 +40,13 @@ export default function MDXLayout({
   const path = usePathname();
   return (
     <div className="grow flex">
-      <div className="flex-none flex flex-col gap-1 bg-secondary/50 p-2">
+      <div className="flex-none flex flex-col gap-1 bg-secondary/90 p-2">
         {items.map((item, index) => (
           <a
             key={index}
             href={item.href}
             className={cn(
-              "px-4 py-2 hover:bg-black/20 rounded-lg font-medium text-sm",
+              "px-4 py-2 hover:bg-black/40 rounded-lg font-medium text-sm",
               path === item.href && "bg-black/80",
             )}
           >
@@ -42,7 +54,7 @@ export default function MDXLayout({
           </a>
         ))}
       </div>
-      <div className="grow flex p-2">{children}</div>
+      <div className="grow p-2">{children}</div>
     </div>
   );
 }

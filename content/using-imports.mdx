@@ -1,0 +1,47 @@
+import ContentBox from "@/components/mdx-example/content-box";
+
+# MDX: Using imports
+
+Create a new page within the /app directory and an MDX file wherever you'd like:
+
+```
+  my-project
+  ├── app
+  │   └── mdx-page
+  │       └── page.(tsx/js)
+  ├── content
+  │   └── using-import.(mdx/md)
+  |── mdx-components.(tsx/js)
+  └── package.json
+```
+
+You can use MDX in these files, and even import React components, directly inside your MDX page:
+
+Import the MDX file inside the page to display the content:
+
+```
+import React from "react";
+import Content from "@/content/using-imports.mdx";
+
+const Page = (): JSX.Element => {
+  return (
+    <div>
+      <Content />
+    </div>
+  );
+};
+
+export default Page;
+```
+
+This is some **bold** and _italics_ text.
+
+This is a list in markdown:
+
+- One
+- Two
+- Three
+
+Checkout my React component:
+
+<ContentBox />
