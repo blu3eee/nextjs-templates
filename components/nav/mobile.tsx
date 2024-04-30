@@ -39,7 +39,7 @@ export function MobileNav({
   return (
     <div
       className={cn(
-        "fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-y-auto pt-6 pb-32 shadow-md animate-in slide-in-from-top-10 md:hidden bg-black/80 px-4"
+        "fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-y-auto pt-6 pb-32 shadow-md animate-in slide-in-from-top-10 md:hidden bg-black/80 px-4",
       )}
     >
       <div
@@ -76,7 +76,7 @@ export function MobileNav({
                           href={navItem.disabled ? "#" : navItem.href}
                           className={cn(
                             "flex w-full items-center rounded-md py-2 px-6 text-sm font-medium hover:underline",
-                            navItem.disabled && "cursor-not-allowed opacity-60"
+                            navItem.disabled && "cursor-not-allowed opacity-60",
                           )}
                         >
                           {navItem.title}
@@ -94,7 +94,7 @@ export function MobileNav({
                   href={item.disabled ? "#" : item.href}
                   className={cn(
                     "flex w-full items-center rounded-md py-2 text-sm font-medium hover:underline",
-                    item.disabled && "cursor-not-allowed opacity-60"
+                    item.disabled && "cursor-not-allowed opacity-60",
                   )}
                 >
                   {item.title}

@@ -81,7 +81,7 @@ export function DocsSidebarNavItems({
             } // Update the href with language prefix
             className={cn(
               "flex w-full items-center rounded-md p-2 gap-2 hover:bg-muted text-foreground",
-              pathname === `/${language}${item.href}` ? "bg-muted" : ""
+              pathname === `/${language}${item.href}` ? "bg-muted" : "",
             )}
             target={
               item.external ?? item.href.startsWith("https://") ? "_blank" : ""
@@ -109,7 +109,7 @@ export function DocsSidebarNavItems({
           >
             {item.title}
           </span>
-        )
+        ),
       )}
     </div>
   ) : null;

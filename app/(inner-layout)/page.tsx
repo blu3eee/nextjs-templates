@@ -17,7 +17,7 @@ export default function Home(): JSX.Element {
           href="/development"
           className={cn(
             buttonVariants({ variant: "secondary", size: "sm" }),
-            "flex items-center gap-2 text-secondary-foreground/80 "
+            "flex items-center gap-2 text-secondary-foreground/80 ",
           )}
         >
           <Component size={16} />
@@ -28,7 +28,7 @@ export default function Home(): JSX.Element {
       <div
         className={cn(
           "text-center w-full text-5xl font-semibold",
-          poppinsFont.className
+          poppinsFont.className,
         )}
       >
         NextJS Template
