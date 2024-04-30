@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS Templates
+
+This repository contains various templates with CI/CD configurations for Next.js projects. The main branch serves as a base template with common configurations, while additional branches are dedicated to specific features or use cases.
+
+## Main Branch
+
+The main branch includes the following features:
+
+- **Next.js** setup with **shadcn/ui** and **Tailwind CSS**
+- **Prettier** and **ESLint** configured for code formatting and linting
+- **Husky** and **lint-staged** installed and configured for running commitlint on commit messages
+- **GitHub Actions** workflow (`cicd.yml`) for Continuous Integration (CI)
+
+The CI workflow ensures that the project is built successfully, linting and formatting rules are followed, and commit messages commitlint to the commitlint convention.
+
+## Use MDX Branch
+
+The `use-mdx` branch includes additional configurations and dependencies for using MDX (Markdown with JSX) in the Next.js project.
 
 ## Getting Started
 
-First, run the development server:
+To get started with this repository, clone it to your local machine and navigate to the desired branch:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/blu3eee/nextjs-templates.git
+cd nextjs-templates
+git checkout main # or any other branch you want to use
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, install the dependencies and run the development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The Next.js application will be available at `http://localhost:3000` by default.
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions to this repository are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
