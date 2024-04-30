@@ -30,3 +30,13 @@ export function chunkArray<T>(array: T[], size: number): T[][] {
     return chunks;
   }, []);
 }
+
+// This function removes all non-alphanumeric characters except hyphens and underscores,
+// converts the string to lowercase, and replaces spaces with hyphens.
+export const generateId = (text: string): string => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9-_ ]/g, "") // Remove all non-alphanumeric characters except hyphens and underscores.
+    .split(" ")
+    .join("-");
+};
