@@ -9,7 +9,8 @@
     "prepare": "husky",
     "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix",
-    "format": "prettier --config .prettierrc.json --write --ignore-unknown \"**/*.{ts,tsx}\""
+    "format": "prettier --config .prettierrc.json --write --ignore-unknown \"**/*.{ts,tsx}\"",
+    "commit": "npx git-cz"
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.0.3",
