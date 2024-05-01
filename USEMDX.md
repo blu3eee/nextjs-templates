@@ -17,3 +17,9 @@ Make sure the file `mdx-components.tsx` is at the root folder. Components in `md
 ```
 npm i next-mdx-remote
 ```
+
+### Use with Table of Contents
+
+```
+npm i mdast-util-toc unist-util-visit remark
+```

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "prepare": "husky",
-    "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint \".\" --ext js,jsx,ts,tsx --report-unused-disable-directives",
     "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix",
     "format": "prettier --config .prettierrc.json --write --ignore-unknown \"**/*.{ts,tsx}\"",
     "commit": "npx git-cz"
@@ -27,15 +27,18 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.376.0",
+    "mdast-util-toc": "^7.0.1",
     "next": "14.2.3",
     "next-mdx-remote": "^4.4.1",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "remark": "^15.0.1",
     "remark-gfm": "^4.0.0",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",

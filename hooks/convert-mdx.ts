@@ -1,4 +1,5 @@
 import { useMDXComponents } from "@/mdx-components";
+import { type TableOfContents, getTableOfContents } from "@/lib/toc";
 import type { MDXComponents } from "mdx/types";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
@@ -10,6 +11,7 @@ export const useConvertMdxContent = async <T extends Frontmatter = Frontmatter>(
 ): Promise<{
   frontmatter: T;
   content: React.ReactNode;
+  toc: TableOfContents;
 }> => {
   const { frontmatter, content } = await compileMDX<T>({
     source: input,
@@ -19,6 +21,7 @@ export const useConvertMdxContent = async <T extends Frontmatter = Frontmatter>(
     },
     components: useMDXComponents({ ...components }),
   });
+  const toc = await getTableOfContents(input);
 
-  return { frontmatter, content };
+  return { frontmatter, content, toc };
 };

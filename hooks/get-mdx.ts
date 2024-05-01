@@ -5,6 +5,7 @@ import { useMDXComponents } from "@/mdx-components";
 import remarkGfm from "remark-gfm";
 import type { MDXComponents } from "mdx/types";
 import type { Frontmatter } from "@/types/mdx";
+import { type TableOfContents, getTableOfContents } from "@/lib/toc";
 
 const rootDirectory = path.join(process.cwd(), "content");
 
@@ -14,6 +15,7 @@ export const useGetMdxBySlugs = async <T extends Frontmatter = Frontmatter>(
 ): Promise<{
   frontmatter: T;
   content: React.ReactNode;
+  toc: TableOfContents;
 }> => {
   const lastSlug = slugs.at(-1) ?? "";
   const realSlug = lastSlug.replace(/\.mdx$/, "");
@@ -43,7 +45,9 @@ export const useGetMdxBySlugs = async <T extends Frontmatter = Frontmatter>(
     components: useMDXComponents({ ...components }),
   });
 
-  return { frontmatter, content };
+  const toc = await getTableOfContents(fileContent);
+
+  return { frontmatter, content, toc };
 };
 
 /**

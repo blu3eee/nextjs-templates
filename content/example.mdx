@@ -2,14 +2,70 @@ import ContentBox from "@/components/mdx-example/content-box";
 
 # Welcome to my MDX page!
 
-This is some **bold** and _italics_ text.
+## MDX Table of Contents
 
-This is a list in markdown:
+```
+import { useGetMdxBySlugs } from "@/hooks/get-mdx";
+import React from "react";
+import ContentBox from "@/components/mdx-example/content-box";
+import { DashboardTableOfContents } from "@/components/toc";
 
-- One
-- Two
-- Three
+const MdxWithToc = async (): Promise<JSX.Element> => {
+  const { content, toc } = await useGetMdxBySlugs(["example.mdx"], {
+    ContentBox,
+  });
+  return (
+    <div className="flex justify-center">
+      <div className="relative max-w-screen-lg py-6 lg:gap-10 lg:py-10 xl:grid xl:grid-cols-[1fr_300px] min-w-0">
+        <div className="mx-auto w-full min-w-0">
+          <hr className="my-4 md:my-6" />
+          {content}
+        </div>
+        <div className="hidden text-sm xl:block">
+          <div className="sticky top-16 -mt-10 max-h-[calc(var(--vh)-4rem)] overflow-y-auto pt-10">
+            {toc && <DashboardTableOfContents toc={toc} />}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-Checkout my React component:
+export default MdxWithToc;
+```
 
 <ContentBox />
+
+## Project A
+
+Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus magni ipsa earum laborum deleniti, voluptates consectetur eius debitis at neque doloremque, quae ullam obcaecati exercitationem natus mollitia asperiores vel et!
+
+## Project B
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Et repudiandae accusamus incidunt, inventore praesentium neque perspiciatis quod labore earum beatae delectus. Veniam, quas maxime nulla similique id quod delectus est.
+Explicabo et culpa minima obcaecati totam magnam atque fugit a ut. Sint blanditiis quibusdam eos quis eligendi officia fugit doloribus et quos earum, unde aperiam necessitatibus illo odio possimus molestiae!
+Dignissimos dicta porro quisquam laudantium minus hic numquam sit. Eum laborum odio nulla! Vero sequi veniam maiores dicta blanditiis ipsam quo reiciendis sit. Vero aperiam quas dolores, itaque inventore aliquam!
+Dolore quidem aut, inventore alias eaque et fuga accusamus voluptates impedit esse minus voluptatibus quibusdam dolores, dignissimos nesciunt ipsa eos sit doloribus molestias quos qui quasi quis aliquid. Sequi, nam!
+Quasi, quaerat! Animi quibusdam eum exercitationem unde iste aliquid provident amet libero, natus officiis sit ullam laudantium dolor minus ipsam ex nostrum. Aperiam earum numquam, laudantium corrupti perferendis quia modi!
+Provident eos harum eum corporis dicta illum minima fugit? Quae quisquam numquam autem itaque reiciendis eius obcaecati libero esse ea? Eligendi, voluptate dignissimos! Maiores molestiae officia adipisci temporibus, non deleniti!
+Eaque ipsam sunt reiciendis animi cumque! Voluptatibus illo molestias accusantium expedita doloremque reiciendis, earum deleniti tenetur, consequatur voluptatum nemo, ex iste iusto veniam! Repudiandae velit repellat incidunt, quis dignissimos nisi.
+Qui dolor aliquam amet quaerat quo molestias, illum quibusdam libero quos perspiciatis explicabo ipsam voluptates hic culpa distinctio molestiae optio dolorem sint error soluta adipisci. Unde nam a labore commodi!
+Maxime similique est necessitatibus? Illum vel hic animi voluptates nisi obcaecati quae placeat illo ducimus amet tempore aliquid aliquam dolores, autem aut corporis consectetur aspernatur esse doloremque modi odit cumque!
+Iste quia illum labore aperiam voluptate beatae corporis amet laborum, ducimus dicta, provident rem numquam maxime? Blanditiis aut, repudiandae laborum explicabo sed itaque adipisci ex nisi exercitationem! Perferendis, dolores asperiores?
+
+## Project C
+
+Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus magni ipsa earum laborum deleniti, voluptates consectetur eius debitis at neque doloremque, quae ullam obcaecati exercitationem natus mollitia asperiores vel et!
+
+## Project D
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Et repudiandae accusamus incidunt, inventore praesentium neque perspiciatis quod labore earum beatae delectus. Veniam, quas maxime nulla similique id quod delectus est.
+Explicabo et culpa minima obcaecati totam magnam atque fugit a ut. Sint blanditiis quibusdam eos quis eligendi officia fugit doloribus et quos earum, unde aperiam necessitatibus illo odio possimus molestiae!
+Dignissimos dicta porro quisquam laudantium minus hic numquam sit. Eum laborum odio nulla! Vero sequi veniam maiores dicta blanditiis ipsam quo reiciendis sit. Vero aperiam quas dolores, itaque inventore aliquam!
+Dolore quidem aut, inventore alias eaque et fuga accusamus voluptates impedit esse minus voluptatibus quibusdam dolores, dignissimos nesciunt ipsa eos sit doloribus molestias quos qui quasi quis aliquid. Sequi, nam!
+Quasi, quaerat! Animi quibusdam eum exercitationem unde iste aliquid provident amet libero, natus officiis sit ullam laudantium dolor minus ipsam ex nostrum. Aperiam earum numquam, laudantium corrupti perferendis quia modi!
+Provident eos harum eum corporis dicta illum minima fugit? Quae quisquam numquam autem itaque reiciendis eius obcaecati libero esse ea? Eligendi, voluptate dignissimos! Maiores molestiae officia adipisci temporibus, non deleniti!
+Eaque ipsam sunt reiciendis animi cumque! Voluptatibus illo molestias accusantium expedita doloremque reiciendis, earum deleniti tenetur, consequatur voluptatum nemo, ex iste iusto veniam! Repudiandae velit repellat incidunt, quis dignissimos nisi.
+Qui dolor aliquam amet quaerat quo molestias, illum quibusdam libero quos perspiciatis explicabo ipsam voluptates hic culpa distinctio molestiae optio dolorem sint error soluta adipisci. Unde nam a labore commodi!
+Maxime similique est necessitatibus? Illum vel hic animi voluptates nisi obcaecati quae placeat illo ducimus amet tempore aliquid aliquam dolores, autem aut corporis consectetur aspernatur esse doloremque modi odit cumque!
+Iste quia illum labore aperiam voluptate beatae corporis amet laborum, ducimus dicta, provident rem numquam maxime? Blanditiis aut, repudiandae laborum explicabo sed itaque adipisci ex nisi exercitationem! Perferendis, dolores asperiores?
