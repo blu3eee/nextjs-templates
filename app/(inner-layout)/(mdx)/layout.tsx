@@ -36,6 +36,10 @@ const items: ItemProps[] = [
     href: "/remote-mdx/from-file",
     name: "Remote MDX with Slugs",
   },
+  {
+    href: "/mdx-with-toc",
+    name: "MDX with TOC",
+  },
 ];
 
 /**
@@ -70,12 +74,7 @@ export default function MDXLayout({
             ))}
           </div>
         </aside>
-        <div className="relative py-6 lg:gap-10 lg:py-10 xl:grid xl:grid-cols-[1fr_300px] min-w-0">
-          <div className="mx-auto w-full min-w-0">
-            {/* <hr className="my-4 md:my-6" /> */}
-            {children}
-          </div>
-        </div>
+        {children}
       </div>
     </div>
   );

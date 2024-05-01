@@ -1,11 +1,9 @@
 import fs from "fs";
 import path from "path";
-import { compileMDX } from "next-mdx-remote/rsc";
-import { useMDXComponents } from "@/mdx-components";
-import remarkGfm from "remark-gfm";
 import type { MDXComponents } from "mdx/types";
 import type { Frontmatter } from "@/types/mdx";
-import { type TableOfContents, getTableOfContents } from "@/lib/toc";
+import { type TableOfContents } from "@/lib/toc";
+import { useConvertMdxContent } from "./convert-mdx";
 
 const rootDirectory = path.join(process.cwd(), "content");
 
@@ -36,18 +34,7 @@ export const useGetMdxBySlugs = async <T extends Frontmatter = Frontmatter>(
 
   const fileContent = fs.readFileSync(filePath, { encoding: "utf8" });
 
-  const { frontmatter, content } = await compileMDX<T>({
-    source: fileContent,
-    options: {
-      parseFrontmatter: true,
-      mdxOptions: { remarkPlugins: [remarkGfm] },
-    },
-    components: useMDXComponents({ ...components }),
-  });
-
-  const toc = await getTableOfContents(fileContent);
-
-  return { frontmatter, content, toc };
+  return await useConvertMdxContent(fileContent, components);
 };
 
 /**

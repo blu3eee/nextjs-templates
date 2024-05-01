@@ -3,6 +3,21 @@ import { type TableOfContents, getTableOfContents } from "@/lib/toc";
 import type { MDXComponents } from "mdx/types";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import rehypePrettyCode, {
+  type Options as RehypeOptions,
+} from "rehype-pretty-code";
+
+export const rehypeOptions: RehypeOptions = {
+  defaultLang: {
+    block: "plaintext",
+    inline: "plaintext",
+  },
+  filterMetaString: (string) => string.replace(/filename="[^"]*"/, ""),
+  // See Options section below.
+  // The default theme is github-dark-dimmed. Shiki has a bunch of [pre-packaged themes](https://shiki.style/themes#themes), which can be specified as a plain string
+  theme: "one-dark-pro",
+};
+
 type Frontmatter = Record<string, unknown>;
 
 export const useConvertMdxContent = async <T extends Frontmatter = Frontmatter>(
@@ -17,7 +32,10 @@ export const useConvertMdxContent = async <T extends Frontmatter = Frontmatter>(
     source: input,
     options: {
       parseFrontmatter: true,
-      mdxOptions: { remarkPlugins: [remarkGfm] },
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [[rehypePrettyCode, rehypeOptions]],
+      },
     },
     components: useMDXComponents({ ...components }),
   });

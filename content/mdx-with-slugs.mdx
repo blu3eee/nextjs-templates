@@ -1,4 +1,8 @@
-```
+<div className="mt-4" />
+
+### This has been rehyped with rehypePlugins
+
+```ts {1-3,4} filename="/app/.../page.tsx"
 const useGetContent = async (
   slugs: string[],
 ): Promise<{
@@ -28,10 +32,14 @@ export default async function Page({
 }): Promise<JSX.Element> {
   const data = await useGetContent(params.slugs);
   if (!data) {
-    return (<div>Could not find requested resource. Could not find requested resource</div>);
+    return (
+      <div>
+        Could not find requested resource. Could not find requested resource
+      </div>
+    );
   }
 
-  return (<div>{data.content}</div>);
+  return <div>{data.content}</div>;
 }
 
 export function generateStaticParams() {
@@ -41,5 +49,4 @@ export function generateStaticParams() {
     slugs,
   }));
 }
-
 ```

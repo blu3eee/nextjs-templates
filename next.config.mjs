@@ -1,5 +1,18 @@
 import remarkGfm from "remark-gfm";
 import nextMdx from "@next/mdx";
+import rehypePrettyCode from "rehype-pretty-code";
+
+/** @type {import('rehype-pretty-code').Options} */
+const rehypeOptions = {
+  defaultLang: {
+    block: "plaintext",
+    inline: "plaintext",
+  },
+  filterMetaString: (string) => string.replace(/filename="[^"]*"/, ""),
+  // See Options section below.
+  // The default theme is github-dark-dimmed. Shiki has a bunch of [pre-packaged themes](https://shiki.style/themes#themes), which can be specified as a plain string
+  theme: "one-dark-pro",
+};
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -26,7 +39,7 @@ const withMDX = nextMdx({
   // Add markdown plugins here, as desired
   options: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
+    rehypePlugins: [[rehypePrettyCode, rehypeOptions]],
   },
 });
 
