@@ -52,3 +52,25 @@ jobs:
       - name: Check commit messages
         if: ${{ github.event_name == 'push' }}
         run: npx commitlint --from HEAD~1 --verbose
+
+  check-code-conventions:
+    name: Check code conventions
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20.11.1"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
