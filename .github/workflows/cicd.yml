@@ -49,12 +49,6 @@ jobs:
       - name: Run format check
         run: npm run format
 
-      - name: Upload coverage reports to Codecov
-        if: ${{ github.event_name == 'push' }} # Conditionally runs this step only on push events
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }} # Uses the Codecov token from secrets to authenticate
-
   # Job to check commit messages for push events
   check-commit-messages:
     name: Check commit messages
