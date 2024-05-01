@@ -59,7 +59,7 @@ configure `.eslintrc.json`
 install `husky`, `lint-staged` and `commitlint`
 
 ```bash
-npm i -D husky lint-staged @commitlint/{cli, config-conventional, cz-commitlint}
+npm i -D husky lint-staged @commitlint/{cli,config-conventional,cz-commitlint}
 ```
 
 add this to package.json
