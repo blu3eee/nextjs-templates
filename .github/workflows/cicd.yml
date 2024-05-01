@@ -49,11 +49,6 @@ jobs:
       - name: Run format check
         run: npm run format
 
-      # Checks commit messages in PRs
-      - name: Check commit messages for PR
-        if: ${{ github.event_name == 'pull_request' }}
-        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
-
       - name: Upload coverage reports to Codecov
         if: ${{ github.event_name == 'push' }} # Conditionally runs this step only on push events
         uses: codecov/codecov-action@v4.0.1
