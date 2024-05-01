@@ -1,5 +1,8 @@
 # NextJS Templates
 
+[![github actions](https://github.com/blu3eee/nextjs-templates/actions/workflows/cicd.yml/badge.svg)](https://github.com/blu3eee/nextjs-templates/actions/workflows/cicd.yml)
+[![prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io)
+
 This repository contains various templates with CI/CD configurations for Next.js projects. The main branch serves as a base template with common configurations, while additional branches are dedicated to specific features or use cases.
 
 ## Main Branch
