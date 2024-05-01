@@ -1,7 +1,7 @@
 name: Continuous Integration
 
+# Triggers the workflow on push events and pull request events to the repository.
 on:
-  #triggers on every push and pull
   push:
   pull_request:
 
@@ -49,12 +49,6 @@ jobs:
       - name: Run format check
         run: npm run format
 
-      - name: Upload coverage reports to Codecov
-        if: ${{ github.event_name == 'push' }} # Conditionally runs this step only on push events
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }} # Uses the Codecov token from secrets to authenticate
-
   # Job to check commit messages for push events
   check-commit-messages:
     name: Check commit messages
@@ -72,55 +66,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run lint with eslint
-        run: npm run lint
-
-      - name: Run format check
-        run: npm run format
-
-      - name: Check commit messages
-        if: ${{ github.event_name == 'pull_request' }}
-        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
-
-  check-commit-messages:
-    name: Check commit messages
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "20.11.1"
-
-      - name: Install dependencies
-        run: npm install
-
+      # Checks the last commit message
+      # Conditionally runs this job only on push events
       - name: Check commit messages
         if: ${{ github.event_name == 'push' }}
         run: npx commitlint --from HEAD~1 --verbose
-
-  check-code-conventions:
-    name: Check code conventions
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "20.11.1"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
