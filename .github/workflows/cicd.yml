@@ -1,23 +1,31 @@
 name: Continuous Integration
 
 on:
-  #triggers on every push and pull
   push:
   pull_request:
 
 jobs:
-  build:
-    name: Build project
+  build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ["14.x", "16.x", "18.x", "20.x"]
     steps:
       - uses: actions/checkout@v2
+
+      - name: Cache Node modules
+        uses: actions/cache@v2
         with:
-          fetch-depth: 0
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "20.11.1"
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
         run: npm install
@@ -28,49 +36,23 @@ jobs:
       - name: Run format check
         run: npm run format
 
-      - name: Check commit messages
-        if: ${{ github.event_name == 'pull_request' }}
-        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
-
-  check-commit-messages:
-    name: Check commit messages
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "20.11.1"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Check commit messages
-        if: ${{ github.event_name == 'push' }}
-        run: npx commitlint --from HEAD~1 --verbose
-
-  check-code-conventions:
-    name: Check code conventions
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "20.11.1"
-
-      - name: Install dependencies
-        run: npm install
-
       - name: Upload coverage reports to Codecov
+        if: ${{ github.event_name == 'push' }}
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  check-commit-messages:
+    name: Check commit messages
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20.11.1"
+
+      - name: Check commit messages
+        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
