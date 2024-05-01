@@ -22,7 +22,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <h1
         id={generateId(String(children))}
         className={cn(
-          "mt-8 scroll-m-20 text-6xl font-bold tracking-tight",
+          "mt-8 text-6xl font-bold tracking-tight",
           rubikFont.className,
           className,
         )}
@@ -35,7 +35,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <h2
         id={generateId(String(children))}
         className={cn(
-          "mt-8 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0",
+          "mt-8 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0 ",
           poppinsFont.className,
           className,
         )}

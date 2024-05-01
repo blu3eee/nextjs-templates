@@ -1,0 +1,45 @@
+```
+const useGetContent = async (
+  slugs: string[],
+): Promise<{
+  frontmatter: Frontmatter;
+  content: React.ReactNode;
+} | null> => {
+  if (!slugs || slugs.length == 0) {
+    return null;
+  }
+  try {
+    const { frontmatter, content } = await getMdxBySlugs<{
+      title?: string;
+      author?: string;
+    }>(["mdx-examples"].concat(slugs));
+    return { frontmatter, content };
+  } catch {
+    return null;
+  }
+};
+
+export default async function Page({
+  params,
+}: {
+  params: {
+    slugs: string[];
+  };
+}): Promise<JSX.Element> {
+  const data = await useGetContent(params.slugs);
+  if (!data) {
+    return (<div>Could not find requested resource. Could not find requested resource</div>);
+  }
+
+  return (<div>{data.content}</div>);
+}
+
+export function generateStaticParams() {
+  const slugsArray = getAvailableMdxSlugs(["mdx-examples"]);
+
+  return slugsArray.map((slugs) => ({
+    slugs,
+  }));
+}
+
+```

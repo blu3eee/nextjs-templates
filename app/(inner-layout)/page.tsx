@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { poppinsFont } from "@/styles/fonts";
 import { ChevronRight, Component } from "lucide-react";
+import { Icons } from "@/components/icons";
 
 /**
  * Home component that represents the main content of the homepage.
@@ -56,6 +57,19 @@ export default function Home(): JSX.Element {
         nostrum sit voluptatum totam nihil omnis delectus dolorum voluptate
         ipsum exercitationem quidem reiciendis natus, asperiores repellat in,
         impedit dignissimos? Numquam.
+      </div>
+      <div className="flex justify-center items-center">
+        <a
+          href="/mdx"
+          className={cn(
+            buttonVariants({ variant: "secondary", size: "sm" }),
+            "flex items-center gap-2 text-secondary-foreground/80 ",
+          )}
+        >
+          <Icons.fileText size={16} />
+          Use MDX with NextJS
+          <ChevronRight size={16} />
+        </a>
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ export default function Layout1({
         </div>
       </header>
 
-      <main className="grow flex flex-col ">{children}</main>
+      <main className="grow flex flex-col">{children}</main>
       <Footer className="flex-none" />
     </div>
   );
