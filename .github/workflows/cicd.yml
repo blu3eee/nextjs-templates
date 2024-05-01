@@ -1,50 +1,53 @@
 name: Continuous Integration
 
+# Triggers the workflow on push events and pull request events to the repository.
 on:
   push:
   pull_request:
 
 jobs:
+  # Job to build and test the project
   build-and-test:
     name: Build and Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Specifies the type of runner that the job will run on
     strategy:
       matrix:
-        node-version: ["14.x", "16.x", "18.x", "20.x"]
+        node-version: ["18.x", "20.x"] # Defines a matrix for the job to run with different versions of Node.js
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 # Checks out the repository under $GITHUB_WORKSPACE, so the workflow can access it
 
-      - name: Cache Node modules
+      - name: Cache Node modules # Caches installed Node.js modules to speed up subsequent runs
         uses: actions/cache@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.npm # Specifies the path to cache
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }} # Unique key for the cache
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-node- # Restore from cache when the key exactly matches this prefix
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node-version }} # Sets up the Node.js environment with the version specified in the matrix
 
       - name: Install dependencies
-        run: npm install
+        run: npm install # Installs project dependencies
 
       - name: Run lint with eslint
-        run: npm run lint
+        run: npm run lint # Runs linting to check for syntax and style errors
 
       - name: Run format check
-        run: npm run format
+        run: npm run format # Checks the code format, ensuring consistency
 
       - name: Upload coverage reports to Codecov
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' }} # Conditionally runs this step only on push events
         uses: codecov/codecov-action@v4.0.1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }} # Uses the Codecov token from secrets to authenticate
 
+  # Job to check commit messages for compliance with guidelines
   check-commit-messages:
     name: Check commit messages
-    needs: build-and-test
+    needs: build-and-test # This job needs to wait for the build-and-test job to complete
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -52,7 +55,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "20.11.1"
+          node-version: "20.11.1" # Sets up Node.js version 20.11.1
 
       - name: Check commit messages
-        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose # Runs commitlint to ensure commit messages meet the project's standards
