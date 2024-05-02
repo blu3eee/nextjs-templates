@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode, {
   type Options as RehypeOptions,
 } from "rehype-pretty-code";
+import type { Frontmatter } from "@/types/mdx";
 
 export const rehypeOptions: RehypeOptions = {
   defaultLang: {
@@ -17,8 +18,6 @@ export const rehypeOptions: RehypeOptions = {
   // The default theme is github-dark-dimmed. Shiki has a bunch of [pre-packaged themes](https://shiki.style/themes#themes), which can be specified as a plain string
   theme: "one-dark-pro",
 };
-
-type Frontmatter = Record<string, unknown>;
 
 export const useConvertMdxContent = async <T extends Frontmatter = Frontmatter>(
   input: string,
