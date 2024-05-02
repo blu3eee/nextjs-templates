@@ -13,12 +13,6 @@ create `.prettier.json`
 }
 ```
 
-install eslint config packages
-
-```bash
-npm i -D
-```
-
 configure `.eslintrc.json`
 
 ```json
@@ -56,10 +50,10 @@ configure `.eslintrc.json`
 }
 ```
 
-install `husky`, `lint-staged` and `commitlint`
+install `husky`, `lint-staged` and `commitlint` and `eslint` config packages
 
 ```bash
-npm i -D husky lint-staged @commitlint/{cli,config-conventional,cz-commitlint}
+npm uninstall eslint-config-next && npm i -D eslint eslint-config-{love,prettier} eslint-plugin-jsdoc husky lint-staged @commitlint/{cli,config-conventional,cz-commitlint} && npm i -D eslint-config-next
 ```
 
 add this to package.json
