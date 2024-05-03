@@ -33,7 +33,11 @@ export const useConvertMdxContent = async <T extends Frontmatter = Frontmatter>(
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [[rehypePrettyCode, rehypeOptions]],
+        rehypePlugins: [
+          // @ts-expect-error pkg `unified` Pluggable/Pluggin type mismatching
+          // more info: https://github.com/hashicorp/next-mdx-remote/issues/86
+          [rehypePrettyCode, rehypeOptions],
+        ],
       },
     },
     components: useMDXComponents({ ...components }),
